@@ -19,6 +19,7 @@
 		5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */; };
 		5FD1943D2078A9E10010FB38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943C2078A9E10010FB38 /* User.swift */; };
 		5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */; };
+		5FD194412078B55B0010FB38 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD194402078B55B0010FB38 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5FD1943C2078A9E10010FB38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
+		5FD194402078B55B0010FB38 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		80219B72C23C9DCCE5DFED93 /* Pods_LOOM_Chat_App_Ver1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOOM_Chat_App_Ver1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E206DF44E50716860C691E89 /* Pods-LOOM-Chat-App-Ver1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOOM-Chat-App-Ver1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOOM-Chat-App-Ver1.0/Pods-LOOM-Chat-App-Ver1.0.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +99,7 @@
 		5F25826620789E3F00024BFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5FD194402078B55B0010FB38 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD194412078B55B0010FB38 /* UserService.swift in Sources */,
 				5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */,
 				5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */,
 				5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */,

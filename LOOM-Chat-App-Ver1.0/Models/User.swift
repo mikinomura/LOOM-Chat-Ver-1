@@ -28,4 +28,20 @@ class User {
         self.username = username
         
     }
+    
+    // MARK: Singleton
+    private static var _current: User?
+    
+    static var current: User {
+        guard let currentUser = _current else {
+            fatalError("Error: current user doesn't exist")
+        }
+        
+        return currentUser
+    }
+    
+    // MARK: Class methods
+    static func setCurrent(_ user: User) {
+        _current = user
+    }
 }

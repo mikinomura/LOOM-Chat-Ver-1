@@ -28,22 +28,21 @@ class CreateUsernameController: UIViewController {
             let username = usernameTextField.text,
             !username.isEmpty else { return }
         
-        let userAttrs = ["username": username]
-        
-        let ref = Database.database().reference().child("users").child(firUser.uid)
-        
-        ref.setValue(userAttrs) { (error, ref) in
-            if let error = error {
-                assertionFailure(error.localizedDescription)
-                return
-            }
+        // Send user data to the Firebase database
+        UserService.create(firUser, username: username) { (user) in
+            guard let user = user else { return }
+            print("Create a new user: \(user.username)")
             
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                let user = User(snapshot: snapshot)
-                
-                // Handle newly created userg
-            })
+            User.setCurrent(user)
+            
+            // Back to the main storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            
+            if let initialViewController = storyboard.instantiateInitialViewController() {
+                self.view.window?.rootViewController = initialViewController
+                self.view.window?.makeKeyAndVisible()
+            }
+
         }
-        
     }
 }
