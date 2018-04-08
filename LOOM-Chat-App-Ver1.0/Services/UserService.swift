@@ -12,6 +12,17 @@ import FirebaseDatabase
 
 struct UserService {
     // User-related network code
+    static func show(forUID uid: String, completion: @escaping (User?) -> Void) {
+        let ref = Database.database().reference().child("users").child(uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let user = User(snapshot: snapshot) else {
+                return completion(nil)
+            }
+            
+            completion(user)
+        })
+    }
+    
     static func create(_ firUser: FirebaseAuth.User, username: String, completion: @escaping (User?) -> Void) {
         print("User Service create")
         let userAttrs = ["username": username]
@@ -25,7 +36,6 @@ struct UserService {
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 let user = User(snapshot: snapshot)
-                print("User created: \(user)")
                 completion(user)
             })
         }

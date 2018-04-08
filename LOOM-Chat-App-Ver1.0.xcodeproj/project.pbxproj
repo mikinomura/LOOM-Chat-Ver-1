@@ -17,6 +17,7 @@
 		5F2A90102078981300443516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2A900E2078981300443516 /* LaunchScreen.storyboard */; };
 		5F59C7592078A0B200D5BCE7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F59C7582078A0B200D5BCE7 /* Login.storyboard */; };
 		5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */; };
+		5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E72079A55D007B78A8 /* Constants.swift */; };
 		5FD1943D2078A9E10010FB38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943C2078A9E10010FB38 /* User.swift */; };
 		5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */; };
 		5FD194412078B55B0010FB38 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD194402078B55B0010FB38 /* UserService.swift */; };
@@ -35,6 +36,7 @@
 		5F2A90112078981300443516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F59C7582078A0B200D5BCE7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5FC2D8E72079A55D007B78A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5FD1943C2078A9E10010FB38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
 		5FD194402078B55B0010FB38 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				5F25826120789DE000024BFB /* GoogleService-Info.plist */,
 				5F2A90112078981300443516 /* Info.plist */,
+				5FC2D8E72079A55D007B78A8 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				5F2A90052078981300443516 /* ViewController.swift in Sources */,
 				5FD1943D2078A9E10010FB38 /* User.swift in Sources */,
 				5F2A90032078981300443516 /* AppDelegate.swift in Sources */,
+				5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
