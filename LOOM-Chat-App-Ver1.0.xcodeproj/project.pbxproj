@@ -19,6 +19,8 @@
 		5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E72079A55D007B78A8 /* Constants.swift */; };
 		5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */; };
 		5FC2D8EC2079AEB2007B78A8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */; };
+		5FC2D8EE207A10DE007B78A8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8ED207A10DE007B78A8 /* Message.swift */; };
+		5FC2D8F0207A1271007B78A8 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8EF207A1271007B78A8 /* MessageViewCell.swift */; };
 		5FD1943D2078A9E10010FB38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943C2078A9E10010FB38 /* User.swift */; };
 		5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */; };
 		5FD194412078B55B0010FB38 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD194402078B55B0010FB38 /* UserService.swift */; };
@@ -39,6 +41,8 @@
 		5FC2D8E72079A55D007B78A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		5FC2D8ED207A10DE007B78A8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		5FC2D8EF207A1271007B78A8 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
 		5FD1943C2078A9E10010FB38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
 		5FD194402078B55B0010FB38 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				5FD1943C2078A9E10010FB38 /* User.swift */,
+				5FC2D8ED207A10DE007B78A8 /* Message.swift */,
+				5FC2D8EF207A1271007B78A8 /* MessageViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,7 +323,9 @@
 				5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */,
 				5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */,
 				5FD1943D2078A9E10010FB38 /* User.swift in Sources */,
+				5FC2D8F0207A1271007B78A8 /* MessageViewCell.swift in Sources */,
 				5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */,
+				5FC2D8EE207A10DE007B78A8 /* Message.swift in Sources */,
 				5F2A90032078981300443516 /* AppDelegate.swift in Sources */,
 				5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */,
 			);

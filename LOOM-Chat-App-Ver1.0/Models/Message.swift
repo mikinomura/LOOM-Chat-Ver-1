@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct Message {
+    let message: String
+    let isSender: Bool
+    
+    init(message: String, isSender: Bool) {
+        self.message = message
+        self.isSender = isSender
+    }
+}
