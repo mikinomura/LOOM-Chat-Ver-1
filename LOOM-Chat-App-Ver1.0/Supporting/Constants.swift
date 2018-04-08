@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Constants {
+    struct Segue {
+        static let createUsername = "toCreateUsername"
+    }
+}
