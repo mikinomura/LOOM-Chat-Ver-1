@@ -54,8 +54,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     // Send message to Firebase
     func sendMessage(message: String) {
-        let ref = Database.database().reference().child("messages").child(senderID).childByAutoId()
-        var message = ["message": message]
+        let ref = Database.database().reference().child("messages").child("Luke and Miki").childByAutoId()
+        var message = ["message": message, "sender": senderID]
         ref.setValue(message)
     }
     
@@ -74,10 +74,14 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let value = snap.value as! NSDictionary
-                print(value["message"])
                 
                 if let text = value["message"] as? String, text.characters.count > 0 {
-                    self.addMessage(isSender: true, message: text)
+                    // Check if the message is sent by the user or by another user
+                    if value["sender"] as? String == self.senderID {
+                        self.addMessage(isSender: true, message: text)
+                    } else {
+                        self.addMessage(isSender: false, message: text)
+                    }
                 } else {
                     print("Error! Could not decode message data")
                 }
@@ -88,9 +92,9 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     // MARK: IBAction
     @IBAction func sendButtonTapped(_ sender: Any) {
         if let messageText = messageTextField.text {
-            addMessage(isSender: true, message: messageText)
-            messageTextField.text = ""
+            //addMessage(isSender: true, message: messageText)
             sendMessage(message: messageText)
+            messageTextField.text = ""
         }
         
     }
