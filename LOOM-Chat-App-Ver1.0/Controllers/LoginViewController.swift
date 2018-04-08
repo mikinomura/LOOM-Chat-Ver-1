@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         guard let authUI = FUIAuth.defaultAuthUI()
             else { return }
         
-        authUI.delegate = self as! FUIAuthDelegate
+        authUI.delegate = self
         
         let authViewController = authUI.authViewController()
         present(authViewController, animated: true)
@@ -50,7 +50,7 @@ extension LoginViewController: FUIAuthDelegate {
         guard let user = user
             else { return }
         
-        let userRef = Database.database().reference().child("user").child(user.uid)
+        let userRef = Database.database().reference().child("users").child(user.uid)
         
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
