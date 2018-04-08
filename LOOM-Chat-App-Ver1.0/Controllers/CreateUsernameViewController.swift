@@ -33,7 +33,7 @@ class CreateUsernameController: UIViewController {
             guard let user = user else { return }
             print("Create a new user: \(user.username)")
             
-            User.setCurrent(user)
+            User.setCurrent(user, writeToUserDefaults: true)
             
             // Back to the main storyboard
             let initialViewController = UIStoryboard.initialViewController(for: .main)
