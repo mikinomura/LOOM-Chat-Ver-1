@@ -10,7 +10,6 @@
 		18F901917430A8541668083D /* Pods_LOOM_Chat_App_Ver1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80219B72C23C9DCCE5DFED93 /* Pods_LOOM_Chat_App_Ver1_0.framework */; };
 		5F25826220789DE000024BFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F25826120789DE000024BFB /* GoogleService-Info.plist */; };
 		5F2A90032078981300443516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A90022078981300443516 /* AppDelegate.swift */; };
-		5F2A90052078981300443516 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A90042078981300443516 /* ViewController.swift */; };
 		5F2A90082078981300443516 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2A90062078981300443516 /* Main.storyboard */; };
 		5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A90092078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld */; };
 		5F2A900D2078981300443516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2A900C2078981300443516 /* Assets.xcassets */; };
@@ -19,6 +18,7 @@
 		5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */; };
 		5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E72079A55D007B78A8 /* Constants.swift */; };
 		5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */; };
+		5FC2D8EC2079AEB2007B78A8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */; };
 		5FD1943D2078A9E10010FB38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943C2078A9E10010FB38 /* User.swift */; };
 		5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */; };
 		5FD194412078B55B0010FB38 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD194402078B55B0010FB38 /* UserService.swift */; };
@@ -29,7 +29,6 @@
 		5F25826120789DE000024BFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F2A8FFF2078981300443516 /* LOOM-Chat-App-Ver1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LOOM-Chat-App-Ver1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2A90022078981300443516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F2A90042078981300443516 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F2A90072078981300443516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F2A900A2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LOOM_Chat_App_Ver1_0.xcdatamodel; sourceTree = "<group>"; };
 		5F2A900C2078981300443516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +38,7 @@
 		5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5FC2D8E72079A55D007B78A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
+		5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		5FD1943C2078A9E10010FB38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
 		5FD194402078B55B0010FB38 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -86,9 +86,9 @@
 		5F25826420789E2F00024BFB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5F2A90042078981300443516 /* ViewController.swift */,
 				5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */,
 				5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */,
+				5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -312,10 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FD194412078B55B0010FB38 /* UserService.swift in Sources */,
+				5FC2D8EC2079AEB2007B78A8 /* MessageViewController.swift in Sources */,
 				5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */,
 				5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */,
 				5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */,
-				5F2A90052078981300443516 /* ViewController.swift in Sources */,
 				5FD1943D2078A9E10010FB38 /* User.swift in Sources */,
 				5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */,
 				5F2A90032078981300443516 /* AppDelegate.swift in Sources */,
