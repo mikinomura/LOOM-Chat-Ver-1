@@ -16,6 +16,7 @@
 		5F2A90102078981300443516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2A900E2078981300443516 /* LaunchScreen.storyboard */; };
 		5F59C7592078A0B200D5BCE7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F59C7582078A0B200D5BCE7 /* Login.storyboard */; };
 		5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */; };
+		5F7E56A6207B901F00230651 /* UIView+addConstraintsWithFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E56A5207B901F00230651 /* UIView+addConstraintsWithFormat.swift */; };
 		5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E72079A55D007B78A8 /* Constants.swift */; };
 		5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */; };
 		5FC2D8EC2079AEB2007B78A8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */; };
@@ -38,6 +39,7 @@
 		5F2A90112078981300443516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F59C7582078A0B200D5BCE7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5F7E56A5207B901F00230651 /* UIView+addConstraintsWithFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addConstraintsWithFormat.swift"; sourceTree = "<group>"; };
 		5FC2D8E72079A55D007B78A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */,
+				5F7E56A5207B901F00230651 /* UIView+addConstraintsWithFormat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */,
 				5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */,
 				5FD1943D2078A9E10010FB38 /* User.swift in Sources */,
+				5F7E56A6207B901F00230651 /* UIView+addConstraintsWithFormat.swift in Sources */,
 				5FC2D8F0207A1271007B78A8 /* MessageViewCell.swift in Sources */,
 				5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */,
 				5FC2D8EE207A10DE007B78A8 /* Message.swift in Sources */,

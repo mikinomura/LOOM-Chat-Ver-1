@@ -15,22 +15,51 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     var senderID = ""
     var messages: [Message] = []
     private var newMessageRefHandle: DatabaseHandle?
+    var bottomConstraint: NSLayoutConstraint?
     
-
-    @IBOutlet weak var messageTextField: UITextField!
+    let messageInputContainerview: UIView = {
+        let view = UIView()
+        view.backgroundColor = Constants.Color.secondPurple
+        return view
+    }()
     
-    @IBOutlet weak var sendButton: UIButton!
+    let inputTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter message..."
+        return textField
+    }()
     
-    @IBOutlet weak var textFieldBottomConstraint: NSLayoutConstraint!
+    let sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Send", for: [])
+        button.setTitleColor(Constants.Color.primaryBlue, for: [])
+        return button
+    }()
+    
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         senderID = User.current.uid
         
-        collectionView?.layer.zPosition = 0
-        messageTextField.layer.zPosition = 1
-        sendButton.layer.zPosition = 1
+        // Add a text view
+        view.addSubview(messageInputContainerview)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: messageInputContainerview)
+        view.addConstraintsWithFormat(format: "V:[v0(48)]", views: messageInputContainerview)
+        setupInputComponents()
+        
+        // Text Field Constraint
+        bottomConstraint =  NSLayoutConstraint(
+            item:       messageInputContainerview,
+            attribute:  .bottom,
+            relatedBy:  .equal,
+            toItem:     view,
+            attribute:  .bottom,
+            multiplier: 1.0,
+            constant:   0
+        )
+        
+        view.addConstraint(bottomConstraint!)
         
         addMessage(isSender: true, message: "hello!")
         
@@ -38,13 +67,36 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    private func setupInputComponents(){
+        messageInputContainerview.addSubview(inputTextField)
+        messageInputContainerview.addSubview(sendButton)
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        
+        messageInputContainerview.addConstraintsWithFormat(format: "H:|-0-[v0][v1(60)]|", views: inputTextField, sendButton)
+        messageInputContainerview.addConstraintsWithFormat(format: "V:|[v0]|", views: inputTextField)
+        messageInputContainerview.addConstraintsWithFormat(format: "V:|[v0]|", views: sendButton)
     }
     
     @objc func handleKeyboardNotification(note: Notification) {
         print("Handle Keyboard Notification")
         if let userInfo = note.userInfo {
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
-            textFieldBottomConstraint.constant = -keyboardFrame.height
+            
+            let isKeyboardShowing = note.name == Notification.Name.UIKeyboardWillShow
+        
+            bottomConstraint?.constant = isKeyboardShowing ? -keyboardFrame.height : 0
+            
+            UIView.animate(withDuration: 0, delay:0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion:{ _ in
+                let indexPath = NSIndexPath(item: self.messages.count-1, section: 0)
+                self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+            })
         }
         
     }
@@ -52,6 +104,10 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        inputTextField.endEditing(true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -168,14 +224,15 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         })
     }
     
-    // MARK: IBAction
-    @IBAction func sendButtonTapped(_ sender: Any) {
-        if let messageText = messageTextField.text {
+    @objc func sendButtonTapped(sender: UIButton!) {
+        if let messageText = inputTextField.text {
             //addMessage(isSender: true, message: messageText)
             sendMessage(message: messageText)
-            messageTextField.text = ""
+            inputTextField.text = ""
+            inputTextField.endEditing(true)
         }
         
     }
     
 }
+
