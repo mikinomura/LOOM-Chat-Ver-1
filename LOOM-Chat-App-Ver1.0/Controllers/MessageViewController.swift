@@ -60,7 +60,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     private func observeMessages() {
-        var messageRef = Database.database().reference().child("messages")
+        var messageRef = Database.database().reference().child("messages").child("Luke and Miki")
         
         // Creating a query that limits the synchronization to the last 25 messages.
         let messageQuery = messageRef.queryLimited(toLast:25)
@@ -71,6 +71,16 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             
             let messageData = snapshot.value as? NSDictionary
             
+            let value = snapshot.value as! NSDictionary
+            if let text = value["message"] as? String, text.characters.count > 0 {
+                if value["sender"] as? String == self.senderID {
+                    self.addMessage(isSender: true, message: text)
+                } else {
+                    self.addMessage(isSender: false, message: text)
+                }
+            }
+            
+            /*
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let value = snap.value as! NSDictionary
@@ -86,6 +96,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
                     print("Error! Could not decode message data")
                 }
             }
+ */
         })
     }
     
