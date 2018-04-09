@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     struct Segue {
@@ -17,5 +18,10 @@ struct Constants {
         static let currentUser = "currentUser"
         static let uid = "uid"
         static let username = "username"
+    }
+    
+    struct Color {
+        static let primaryBlue = UIColor(red: 85/255, green: 123/244, blue: 226/255, alpha: 1)
+        static let primaryGreen = UIColor(red: 58/255, green: 207/255, blue: 213/255, alpha: 1)
     }
 }

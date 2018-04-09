@@ -40,14 +40,79 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "messageViewCell", for: indexPath) as! MessageViewCell
+        
+        // Caluculate the width based on the character count, then decide the size of the cell view
+        let size = CGSize(width: view.frame.width, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let estimatedHeight = NSString(string: messages[indexPath.item].message).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)], context: nil)
+        
+        var defaultWidth = estimatedHeight.width
+        var defaultHeight = estimatedHeight.height
+        
+        if estimatedHeight.width < 50 {
+            defaultWidth = 100
+        }
+        
+        // If the message is from the sender, the cell is blue
+        if messages[indexPath.item].isSender == false {
+            // Adjust a size of the bubble and the text
+            cell.bubbleView.frame = CGRect(x: 0, y: 0
+                , width: defaultWidth, height: estimatedHeight.height + 60)
+            cell.messageLabel.frame = CGRect(x: 5, y: 10, width: defaultWidth + 8, height: estimatedHeight.height + 60)
+            
+            // Create a Bubble style cell
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = cell.bubbleView.frame
+            rectShape.position = cell.bubbleView.center
+            rectShape.path = UIBezierPath(roundedRect: cell.bubbleView.bounds, byRoundingCorners: [.bottomRight , .topRight], cornerRadii: CGSize(width: 35, height: 35)).cgPath
+            
+            cell.bubbleView.layer.masksToBounds = true
+            cell.bubbleView.backgroundColor = Constants.Color.primaryBlue
+            cell.messageLabel.textColor = UIColor.white
+            cell.bubbleView.layer.mask = rectShape
+            
+            cell.displayContent(message: messages[indexPath.item].message)
+            
+        } else {
+            // Adjust a size of the blue bubble and the text
+            cell.bubbleView.frame = CGRect(x: view.frame.width - defaultWidth - 30, y: 0, width: defaultWidth + 50, height: estimatedHeight.height + 60)
+            cell.messageLabel.frame = CGRect(x: view.frame.width - defaultWidth, y: 0, width: defaultWidth + 8 , height: estimatedHeight.height + 60)
+            
+            // Create a blue Bubble style
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = cell.bubbleView.frame
+            rectShape.position = cell.bubbleView.center
+            rectShape.path = UIBezierPath(roundedRect: cell.bubbleView.bounds, byRoundingCorners: [.bottomLeft , .topLeft], cornerRadii: CGSize(width: 35, height: 35)).cgPath
+            
+            cell.bubbleView.layer.masksToBounds = true
+            cell.bubbleView.backgroundColor = Constants.Color.primaryGreen
+            cell.messageLabel.textColor = UIColor.white
+            cell.bubbleView.layer.mask = rectShape
+            
+            cell.displayContent(message: messages[indexPath.item].message)
+        }
+            
         cell.displayContent(message: messages[indexPath.item].message)
         
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        // Set the cell's width to the width of the screen
+        let size = CGSize(width: view.frame.width, height: 1000)
+        
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        let estimatedHeight = NSString(string: messages[indexPath.item].message).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)], context: nil)
+        
+        return CGSize(width: view.frame.width, height: estimatedHeight.height + 60)
+    }
+ 
     
     // Append messages
     func addMessage(isSender: Bool, message: String) {
-        var newMessage = Message(message: message, isSender: isSender)
+        let newMessage = Message(message: message, isSender: isSender)
         messages.append(newMessage)
         collectionView?.reloadData()
     }
@@ -55,12 +120,12 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     // Send message to Firebase
     func sendMessage(message: String) {
         let ref = Database.database().reference().child("messages").child("Luke and Miki").childByAutoId()
-        var message = ["message": message, "sender": senderID]
+        let message = ["message": message, "sender": senderID]
         ref.setValue(message)
     }
     
     private func observeMessages() {
-        var messageRef = Database.database().reference().child("messages").child("Luke and Miki")
+        let messageRef = Database.database().reference().child("messages").child("Luke and Miki")
         
         // Creating a query that limits the synchronization to the last 25 messages.
         let messageQuery = messageRef.queryLimited(toLast:25)
@@ -69,10 +134,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         // messages being written to the Firebase DB
         newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
             
-            let messageData = snapshot.value as? NSDictionary
-            
             let value = snapshot.value as! NSDictionary
-            if let text = value["message"] as? String, text.characters.count > 0 {
+            if let text = value["message"] as? String, text.count > 0 {
                 if value["sender"] as? String == self.senderID {
                     self.addMessage(isSender: true, message: text)
                 } else {
@@ -80,23 +143,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
                 }
             }
             
-            /*
-            for child in snapshot.children {
-                let snap = child as! DataSnapshot
-                let value = snap.value as! NSDictionary
-                
-                if let text = value["message"] as? String, text.characters.count > 0 {
-                    // Check if the message is sent by the user or by another user
-                    if value["sender"] as? String == self.senderID {
-                        self.addMessage(isSender: true, message: text)
-                    } else {
-                        self.addMessage(isSender: false, message: text)
-                    }
-                } else {
-                    print("Error! Could not decode message data")
-                }
-            }
- */
         })
     }
     
