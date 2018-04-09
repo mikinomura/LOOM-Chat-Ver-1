@@ -16,16 +16,37 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     var messages: [Message] = []
     private var newMessageRefHandle: DatabaseHandle?
     
+
     @IBOutlet weak var messageTextField: UITextField!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
+    @IBOutlet weak var textFieldBottomConstraint: NSLayoutConstraint!
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         senderID = User.current.uid
         
+        collectionView?.layer.zPosition = 0
+        messageTextField.layer.zPosition = 1
+        sendButton.layer.zPosition = 1
+        
         addMessage(isSender: true, message: "hello!")
         
         observeMessages()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    @objc func handleKeyboardNotification(note: Notification) {
+        print("Handle Keyboard Notification")
+        if let userInfo = note.userInfo {
+            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+            textFieldBottomConstraint.constant = -keyboardFrame.height
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,8 +78,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         if messages[indexPath.item].isSender == false {
             // Adjust a size of the bubble and the text
             cell.bubbleView.frame = CGRect(x: 0, y: 0
-                , width: defaultWidth, height: estimatedHeight.height + 60)
-            cell.messageLabel.frame = CGRect(x: 5, y: 10, width: defaultWidth + 8, height: estimatedHeight.height + 60)
+                , width: defaultWidth + 30, height: estimatedHeight.height + 60)
+            cell.messageLabel.frame = CGRect(x: 5, y: 0, width: defaultWidth + 8, height: estimatedHeight.height + 60)
             
             // Create a Bubble style cell
             let rectShape = CAShapeLayer()
@@ -91,7 +112,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             
             cell.displayContent(message: messages[indexPath.item].message)
         }
-            
+        
+        cell.layer.zPosition = 0
         cell.displayContent(message: messages[indexPath.item].message)
         
         return cell
