@@ -36,9 +36,9 @@ class CreateUsernameController: UIViewController {
             User.setCurrent(user, writeToUserDefaults: true)
             
             // Back to the main storyboard
-            let initialViewController = UIStoryboard.initialViewController(for: .main)
-            self.view.window?.rootViewController = initialViewController
-            self.view.window?.makeKeyAndVisible()
+            // let initialViewController = UIStoryboard.initialViewController(for: .main)
+            // self.view.window?.rootViewController = initialViewController
+            // self.view.window?.makeKeyAndVisible()
         }
     }
 }

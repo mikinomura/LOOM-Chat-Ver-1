@@ -82,13 +82,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vw9-N5-dyD">
-                                <rect key="frame" x="171" y="459" width="32" height="30"/>
+                                <rect key="frame" x="162" y="459" width="50" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="zHD-ZT-izc"/>
+                                </constraints>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="0.18431372549019609" green="0.36470588235294116" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="nextButtonTapped:" destination="SZT-Ic-WXA" eventType="touchUpInside" id="JLy-kd-pAV"/>
+                                    <segue destination="5bs-be-DW5" kind="show" identifier="toParingViewController" id="XRn-ua-PPB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,6 +115,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S79-D3-tSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1676" y="393.55322338830587"/>
+        </scene>
+        <!--Paring View Controller-->
+        <scene sceneID="rag-jm-egR">
+            <objects>
+                <viewController id="5bs-be-DW5" customClass="ParingViewController" customModule="LOOM_Chat_App_Ver1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yVY-Z6-tV3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Find Your Partner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrm-FB-gww">
+                                <rect key="frame" x="88" y="183" width="199" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your partner's username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixa-KM-DdP">
+                                <rect key="frame" x="99" y="318" width="176" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20336579623287671" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coE-f4-v81">
+                                <rect key="frame" x="164" y="448" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="jfw-Oy-28H"/>
+                                </constraints>
+                                <state key="normal" title="Invite"/>
+                                <connections>
+                                    <action selector="FindButtonTapped:" destination="5bs-be-DW5" eventType="touchUpInside" id="Tt3-2P-tK1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33333333333333331" green="0.4823529411764706" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wrm-FB-gww" firstAttribute="top" secondItem="rYv-c8-kNx" secondAttribute="top" constant="150" id="G0c-Uu-drE"/>
+                            <constraint firstItem="Wrm-FB-gww" firstAttribute="centerX" secondItem="rYv-c8-kNx" secondAttribute="centerX" id="KyE-9v-c8c"/>
+                            <constraint firstItem="Ixa-KM-DdP" firstAttribute="centerX" secondItem="rYv-c8-kNx" secondAttribute="centerX" id="vJ6-QJ-Qep"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rYv-c8-kNx"/>
+                    </view>
+                    <connections>
+                        <outlet property="inputTextField" destination="Ixa-KM-DdP" id="XwF-zP-glX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vSE-Vr-hTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2668" y="393.55322338830587"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nWM-tV-h6L">

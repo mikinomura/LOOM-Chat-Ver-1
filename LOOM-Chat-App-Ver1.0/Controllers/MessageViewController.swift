@@ -42,6 +42,9 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         super.viewDidLoad()
         senderID = User.current.uid
         
+        // If paring isn't completed, send a message from the server "Waiting for your partner's accept"
+        // Until the accept, the user can't send messages - hide the keyboard
+        
         // Add a text view
         view.addSubview(messageInputContainerview)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: messageInputContainerview)

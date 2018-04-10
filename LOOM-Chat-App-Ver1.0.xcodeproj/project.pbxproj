@@ -16,6 +16,8 @@
 		5F2A90102078981300443516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2A900E2078981300443516 /* LaunchScreen.storyboard */; };
 		5F59C7592078A0B200D5BCE7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F59C7582078A0B200D5BCE7 /* Login.storyboard */; };
 		5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */; };
+		5F6B66BF207CC15E003122EB /* ParingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B66BE207CC15E003122EB /* ParingService.swift */; };
+		5F6B66C1207CC372003122EB /* ParingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B66C0207CC372003122EB /* ParingViewController.swift */; };
 		5F7E56A6207B901F00230651 /* UIView+addConstraintsWithFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E56A5207B901F00230651 /* UIView+addConstraintsWithFormat.swift */; };
 		5FC2D8E82079A55D007B78A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E72079A55D007B78A8 /* Constants.swift */; };
 		5FC2D8EA2079A633007B78A8 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */; };
@@ -39,6 +41,8 @@
 		5F2A90112078981300443516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F59C7582078A0B200D5BCE7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5F6B66BE207CC15E003122EB /* ParingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParingService.swift; sourceTree = "<group>"; };
+		5F6B66C0207CC372003122EB /* ParingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParingViewController.swift; sourceTree = "<group>"; };
 		5F7E56A5207B901F00230651 /* UIView+addConstraintsWithFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addConstraintsWithFormat.swift"; sourceTree = "<group>"; };
 		5FC2D8E72079A55D007B78A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5FC2D8E92079A633007B78A8 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				5F59C75A2078A0DD00D5BCE7 /* LoginViewController.swift */,
 				5FD1943E2078AC6F0010FB38 /* CreateUsernameViewController.swift */,
 				5FC2D8EB2079AEB2007B78A8 /* MessageViewController.swift */,
+				5F6B66C0207CC372003122EB /* ParingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD194402078B55B0010FB38 /* UserService.swift */,
+				5F6B66BE207CC15E003122EB /* ParingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,6 +328,8 @@
 			files = (
 				5FD194412078B55B0010FB38 /* UserService.swift in Sources */,
 				5FC2D8EC2079AEB2007B78A8 /* MessageViewController.swift in Sources */,
+				5F6B66BF207CC15E003122EB /* ParingService.swift in Sources */,
+				5F6B66C1207CC372003122EB /* ParingViewController.swift in Sources */,
 				5F59C75B2078A0DD00D5BCE7 /* LoginViewController.swift in Sources */,
 				5F2A900B2078981300443516 /* LOOM_Chat_App_Ver1_0.xcdatamodeld in Sources */,
 				5FD1943F2078AC6F0010FB38 /* CreateUsernameViewController.swift in Sources */,
