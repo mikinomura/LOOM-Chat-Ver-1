@@ -72,7 +72,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        
     }
     
     private func setupInputComponents(){

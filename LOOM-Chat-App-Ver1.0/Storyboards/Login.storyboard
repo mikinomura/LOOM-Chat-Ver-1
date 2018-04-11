@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="loginButton" destination="beI-kv-xXJ" id="VH7-rL-an5"/>
                         <segue destination="SZT-Ic-WXA" kind="show" identifier="toCreateUsername" id="ag7-iu-1YN"/>
+                        <segue destination="5bs-be-DW5" kind="show" identifier="signupToFindPartner" id="DOM-2k-YLx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEj-Lf-YWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S79-D3-tSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1676" y="393.55322338830587"/>
+            <point key="canvasLocation" x="1599" y="1285"/>
         </scene>
         <!--Paring View Controller-->
         <scene sceneID="rag-jm-egR">
@@ -130,7 +131,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your partner's username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixa-KM-DdP">
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your partner's username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixa-KM-DdP">
                                 <rect key="frame" x="99" y="318" width="176" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20336579623287671" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
@@ -138,7 +139,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coE-f4-v81">
-                                <rect key="frame" x="164" y="448" width="46" height="30"/>
+                                <rect key="frame" x="164" y="437" width="46" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="jfw-Oy-28H"/>
@@ -151,8 +152,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.4823529411764706" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Ixa-KM-DdP" firstAttribute="top" secondItem="rYv-c8-kNx" secondAttribute="top" constant="300" id="0oj-rr-Gy6"/>
                             <constraint firstItem="Wrm-FB-gww" firstAttribute="top" secondItem="rYv-c8-kNx" secondAttribute="top" constant="150" id="G0c-Uu-drE"/>
                             <constraint firstItem="Wrm-FB-gww" firstAttribute="centerX" secondItem="rYv-c8-kNx" secondAttribute="centerX" id="KyE-9v-c8c"/>
+                            <constraint firstItem="coE-f4-v81" firstAttribute="top" secondItem="Ixa-KM-DdP" secondAttribute="bottom" constant="100" id="s6A-vD-52v"/>
                             <constraint firstItem="Ixa-KM-DdP" firstAttribute="centerX" secondItem="rYv-c8-kNx" secondAttribute="centerX" id="vJ6-QJ-Qep"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rYv-c8-kNx"/>
@@ -183,4 +186,7 @@
             <point key="canvasLocation" x="-308" y="394"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DOM-2k-YLx"/>
+    </inferredMetricsTieBreakers>
 </document>

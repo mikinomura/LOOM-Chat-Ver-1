@@ -12,6 +12,7 @@ import UIKit
 struct Constants {
     struct Segue {
         static let createUsername = "toCreateUsername"
+        static let signupToFindPartner = "signupToFindPartner"
     }
     
     struct UserDefaults {

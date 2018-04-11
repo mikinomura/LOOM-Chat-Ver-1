@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     func configureInitialRootViewController(for window: UIWindow?) {
         let defaults = UserDefaults.standard
-        let initialViewController: UIViewController
+        var initialViewController: UIViewController = UIStoryboard.initialViewController(for: .login)
         
         if Auth.auth().currentUser != nil,
             let userData = defaults.object(forKey: Constants.UserDefaults.currentUser) as? Data,
@@ -108,13 +108,25 @@ extension AppDelegate {
             
             User.setCurrent(user)
             
-            initialViewController = UIStoryboard.initialViewController(for: .main)
+            UserService.showPartner(forUID: user) { (bool) in
+                var initial: UIViewController
+                if bool == true {
+                    print("true")
+                    
+                    initial = UIStoryboard.initialViewController(for: .main)
+                    window?.rootViewController = initial
+                    window?.makeKeyAndVisible()
+                } else {
+                    initial = UIStoryboard.initialViewController(for: .login)
+                    window?.rootViewController = initial
+                    window?.makeKeyAndVisible()
+                }
+            }
         } else {
             initialViewController = UIStoryboard.initialViewController(for: .login)
+            window?.rootViewController = initialViewController
+            window?.makeKeyAndVisible()
         }
-        
-        window?.rootViewController = initialViewController
-        window?.makeKeyAndVisible()
     }
 }
 

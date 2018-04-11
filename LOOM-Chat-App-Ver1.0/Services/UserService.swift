@@ -23,10 +23,23 @@ struct UserService {
         })
     }
     
+    // Check if the user resister a partner
+    static func showPartner(forUID user: User, completion: @escaping (Bool?) -> Void) {
+        let ref = Database.database().reference().child("usersInfo").child(user.username).child("partner")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let partner = snapshot.value else {
+                return completion(false)
+            }
+            
+            completion(true)
+        })
+    }
+    
     static func create(_ firUser: FirebaseAuth.User, username: String, completion: @escaping (User?) -> Void) {
         print("User Service create")
         let userAttrs = ["username": username]
         
+        // add info to "users"
         let ref = Database.database().reference().child("users").child(firUser.uid)
         ref.setValue(userAttrs) { (error, ref) in
             if let error = error {

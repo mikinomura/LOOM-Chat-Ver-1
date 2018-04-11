@@ -23,18 +23,30 @@ class ParingViewController: UIViewController {
         // Check if the username exists or not
         let partnerUsername = inputTextField.text
         let ref = Database.database().reference()
+        let query = ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: partnerUsername)
         
-        let query = ref.queryOrdered(byChild: "users").queryEqual(toValue: partnerUsername)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
-            for child in snapshot.children {
-                print(child)
+            
+            // If partners' username is found, set it as a partner
+            if snapshot.value != nil {
+                let infoRef = ref.child("usersInfo").child(User.current.username).child("partner")
+                let partnerAttrs: [String: Bool] = [partnerUsername!: false]
+                infoRef.setValue(partnerAttrs)  { (error, ref) in
+                    if let error = error {
+                        assertionFailure("Error: \(error.localizedDescription)")
+                        return
+                    }
+                }
+                
+                // If exists, go to the main storyboard
+                let initialViewController = UIStoryboard.initialViewController(for: .main)
+                self.view.window?.rootViewController = initialViewController
+                self.view.window?.makeKeyAndVisible()
+                
+            } else {
+                print("Your partner's username can't be found")
+                // Show Text Message
             }
         })
-        
-        // If exists, go to the main storyboard
-        let initialViewController = UIStoryboard.initialViewController(for: .main)
-        self.view.window?.rootViewController = initialViewController
-        self.view.window?.makeKeyAndVisible()
-        
     }
 }
