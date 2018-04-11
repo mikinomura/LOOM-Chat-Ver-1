@@ -13,6 +13,7 @@ struct Constants {
     struct Segue {
         static let createUsername = "toCreateUsername"
         static let signupToFindPartner = "signupToFindPartner"
+        static let waitingForPartner = "toWaitingForPartner"
     }
     
     struct UserDefaults {

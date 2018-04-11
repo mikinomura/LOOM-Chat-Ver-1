@@ -38,10 +38,8 @@ class ParingViewController: UIViewController {
                     }
                 }
                 
-                // If exists, go to the main storyboard
-                let initialViewController = UIStoryboard.initialViewController(for: .main)
-                self.view.window?.rootViewController = initialViewController
-                self.view.window?.makeKeyAndVisible()
+                // If exists, go to the waiting page
+                self.performSegue(withIdentifier: Constants.Segue.waitingForPartner, sender: self)
                 
             } else {
                 print("Your partner's username can't be found")

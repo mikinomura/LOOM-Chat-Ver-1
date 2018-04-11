@@ -63,15 +63,15 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         )
         
         view.addConstraint(bottomConstraint!)
-        
-        addMessage(isSender: true, message: "hello!")
-        
         observeMessages()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    }
+    private func checkIfPartnerAccept() -> Bool {
+        return false
     }
     
     private func setupInputComponents(){

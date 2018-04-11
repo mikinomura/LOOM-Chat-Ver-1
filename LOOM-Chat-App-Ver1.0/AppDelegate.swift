@@ -110,9 +110,10 @@ extension AppDelegate {
             
             UserService.showPartner(forUID: user) { (bool) in
                 var initial: UIViewController
+                
+                // If the user resistered the partner already, go to the main screen
+                // Else, go to the login screen
                 if bool == true {
-                    print("true")
-                    
                     initial = UIStoryboard.initialViewController(for: .main)
                     window?.rootViewController = initial
                     window?.makeKeyAndVisible()

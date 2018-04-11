@@ -56,8 +56,6 @@ extension LoginViewController: FUIAuthDelegate {
                 
                 UserService.showPartner(forUID: user) { (bool) in
                     if bool == true {
-                        print("true")
-                        
                         let initialViewController = UIStoryboard.initialViewController(for: .main)
                         self.view.window?.rootViewController = initialViewController
                         self.view.window?.makeKeyAndVisible()
