@@ -209,7 +209,7 @@
         <!--Waiting For The Partner View Controller-->
         <scene sceneID="DES-3S-jhs">
             <objects>
-                <viewController id="OWl-pM-FJZ" customClass="WaitingForThePartnerViewController" customModule="LOOM_Chat_App_Ver1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="waitingForYourPartner" id="OWl-pM-FJZ" customClass="WaitingForThePartnerViewController" customModule="LOOM_Chat_App_Ver1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2kX-nv-9dX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -82,10 +82,17 @@ extension LoginViewController: FUIAuthDelegate {
                     
                     UserService.showPartner(forUID: user) { (bool) in
                         if bool == true {
-                            let initialViewController = UIStoryboard.initialViewController(for: .main)
-                            self.view.window?.rootViewController = initialViewController
-                            self.view.window?.makeKeyAndVisible()
-                            
+                            UserService.showPartnerStatus(forUID: user, completion: { (status) in
+                                if status == true {
+                                    let initialViewController = UIStoryboard.initialViewController(for: .main)
+                                    self.view.window?.rootViewController = initialViewController
+                                    self.view.window?.makeKeyAndVisible()
+                                } else {
+                                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                                    let waitingView = storyboard.instantiateViewController(withIdentifier: "waitingForYourPartner") as! WaitingForThePartnerViewController
+                                    self.navigationController?.pushViewController(waitingView, animated: true)
+                                }
+                            })
                         } else {
                             self.performSegue(withIdentifier: Constants.Segue.signupToFindPartner, sender: self)
                         }
