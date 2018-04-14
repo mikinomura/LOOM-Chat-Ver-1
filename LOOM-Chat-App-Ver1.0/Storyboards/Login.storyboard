@@ -111,6 +111,7 @@
                     <connections>
                         <outlet property="nextButton" destination="vw9-N5-dyD" id="u7J-q1-Gfc"/>
                         <outlet property="usernameTextField" destination="aLH-u0-MJx" id="IbB-oq-kVS"/>
+                        <segue destination="Jgl-qM-UTH" kind="show" identifier="toAcceptScreen" id="2UW-EC-QgJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S79-D3-tSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,6 +170,42 @@
             </objects>
             <point key="canvasLocation" x="2668" y="393.55322338830587"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="twk-bS-oG0">
+            <objects>
+                <viewController id="Jgl-qM-UTH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yoe-3P-fEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accept?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-Kv-JvH">
+                                <rect key="frame" x="156" y="274" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgO-uH-nXR">
+                                <rect key="frame" x="172" y="389" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="YES"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Request From xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9a-9o-K4L">
+                                <rect key="frame" x="119" y="184" width="137" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="UDt-7a-Qlq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPO-dY-ipC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3333.5999999999999" y="1284.1079460269866"/>
+        </scene>
         <!--Waiting For The Partner View Controller-->
         <scene sceneID="DES-3S-jhs">
             <objects>
@@ -212,6 +249,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DOM-2k-YLx"/>
+        <segue reference="XRn-ua-PPB"/>
     </inferredMetricsTieBreakers>
 </document>

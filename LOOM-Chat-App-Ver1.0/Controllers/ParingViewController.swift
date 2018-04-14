@@ -30,7 +30,7 @@ class ParingViewController: UIViewController {
             // If partners' username is found, set it as a partner
             if snapshot.value != nil {
                 let infoRef = ref.child("usersInfo").child(User.current.username).child("partner")
-                let partnerAttrs: [String: Bool] = [partnerUsername!: false]
+                let partnerAttrs = ["partnerUsername": partnerUsername!, "status": false] as [String : Any]
                 infoRef.setValue(partnerAttrs)  { (error, ref) in
                     if let error = error {
                         assertionFailure("Error: \(error.localizedDescription)")

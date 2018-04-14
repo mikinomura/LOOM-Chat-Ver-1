@@ -14,6 +14,7 @@ struct Constants {
         static let createUsername = "toCreateUsername"
         static let signupToFindPartner = "signupToFindPartner"
         static let waitingForPartner = "toWaitingForPartner"
+        static let acceptScreen = "toAcceptScreen"
     }
     
     struct UserDefaults {

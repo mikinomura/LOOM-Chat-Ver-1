@@ -35,10 +35,19 @@ class CreateUsernameController: UIViewController {
             
             User.setCurrent(user, writeToUserDefaults: true)
             
-            // Back to the main storyboard
-            // let initialViewController = UIStoryboard.initialViewController(for: .main)
-            // self.view.window?.rootViewController = initialViewController
-            // self.view.window?.makeKeyAndVisible()
+            //If the user already has a request from a partner, show an accept screen.
+            if self.checkIfHasPartner() {
+                // Go to an accept screen
+                self.performSegue(withIdentifier: Constants.Segue.acceptScreen, sender: self)
+            } else {
+                // Go to a pairng screen
+                self.performSegue(withIdentifier: Constants.Segue.signupToFindPartner, sender: self)
+            }
         }
+    }
+    
+    private func checkIfHasPartner() -> Bool {
+        
+        return false
     }
 }

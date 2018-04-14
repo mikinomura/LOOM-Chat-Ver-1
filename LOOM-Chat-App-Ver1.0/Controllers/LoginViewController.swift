@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        moveFindUserScreen()
     }
     
     // MARK: IB Actions
@@ -68,6 +70,31 @@ extension LoginViewController: FUIAuthDelegate {
                 self.performSegue(withIdentifier: Constants.Segue.createUsername, sender: self)
             }
             
+        }
+    }
+    
+    private func moveFindUserScreen() {
+        if Auth.auth().currentUser != nil {
+            UserService.show(forUID: User.current.uid) { (user) in
+                // If user already logined, show find partner screen
+                if let user = user {
+                    User.setCurrent(user, writeToUserDefaults: true)
+                    
+                    UserService.showPartner(forUID: user) { (bool) in
+                        if bool == true {
+                            let initialViewController = UIStoryboard.initialViewController(for: .main)
+                            self.view.window?.rootViewController = initialViewController
+                            self.view.window?.makeKeyAndVisible()
+                            
+                        } else {
+                            self.performSegue(withIdentifier: Constants.Segue.signupToFindPartner, sender: self)
+                        }
+                    }
+                } else {
+                    self.performSegue(withIdentifier: Constants.Segue.createUsername, sender: self)
+                }
+                
+            }
         }
     }
 }

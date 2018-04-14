@@ -27,11 +27,12 @@ struct UserService {
     static func showPartner(forUID user: User, completion: @escaping (Bool?) -> Void) {
         let ref = Database.database().reference().child("usersInfo").child(user.username).child("partner")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let partner = snapshot.value else {
+            guard snapshot.exists() else {
+                print("Partner doesn't exist")
                 return completion(false)
             }
-            
-            completion(true)
+            print("snapshot value: \(snapshot.value)")
+            return completion(true)
         })
     }
     
