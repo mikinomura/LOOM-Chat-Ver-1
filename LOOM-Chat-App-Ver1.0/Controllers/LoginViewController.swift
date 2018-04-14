@@ -83,11 +83,13 @@ extension LoginViewController: FUIAuthDelegate {
                     UserService.showPartner(forUID: user) { (bool) in
                         if bool == true {
                             UserService.showPartnerStatus(forUID: user, completion: { (status) in
+                                // If a partner has approved the request
                                 if status == true {
                                     let initialViewController = UIStoryboard.initialViewController(for: .main)
                                     self.view.window?.rootViewController = initialViewController
                                     self.view.window?.makeKeyAndVisible()
                                 } else {
+                                    // If the request has not been approved, show the waiting screen
                                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                                     let waitingView = storyboard.instantiateViewController(withIdentifier: "waitingForYourPartner") as! WaitingForThePartnerViewController
                                     self.navigationController?.pushViewController(waitingView, animated: true)
