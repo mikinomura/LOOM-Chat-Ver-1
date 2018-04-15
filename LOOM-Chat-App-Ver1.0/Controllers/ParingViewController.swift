@@ -29,13 +29,37 @@ class ParingViewController: UIViewController {
             
             // If partners' username is found, set it as a partner
             if snapshot.value != nil {
-                let infoRef = ref.child("usersInfo").child(User.current.username).child("partner")
-                let partnerAttrs = ["partnerUsername": partnerUsername!, "status": false] as [String : Any]
-                infoRef.setValue(partnerAttrs)  { (error, ref) in
+                // The user's info
+                let infoRef = ref.child("usersInfo").child(User.current.username).child("followingPartner")
+                let infoFollowerRef = ref.child("usersInfo").child(User.current.username).child(byAppendingPath: "followerPartner")
+                let followingPartnerAttrs = ["username": partnerUsername!, "status": true] as [String : Any]
+                let followerAttrs = ["username": partnerUsername!, "status": false] as [String: Any]
+                
+                // Follower's info
+                let partnerInfoRef = ref.child("usersInfo").child(partnerUsername!).child("followerPartner")
+                let follwerPartnerAtts = ["username": User.current.username, "status": true] as [String : Any]
+                
+                infoRef.setValue(followingPartnerAttrs)  { (error, ref) in
                     if let error = error {
                         assertionFailure("Error: \(error.localizedDescription)")
                         return
                     }
+                }
+                
+                infoFollowerRef.setValue(followerAttrs) { (error, ref) in
+                    if let error = error {
+                        assertionFailure("Error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                }
+                
+                partnerInfoRef.setValue(follwerPartnerAtts) { (error, ref) in
+                    if let error = error {
+                        assertionFailure("Error: \(error.localizedDescription)")
+                        return
+                    }
+                    
                 }
                 
                 // If exists, go to the waiting page
