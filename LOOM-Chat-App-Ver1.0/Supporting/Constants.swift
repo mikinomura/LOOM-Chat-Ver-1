@@ -21,6 +21,7 @@ struct Constants {
         static let currentUser = "currentUser"
         static let uid = "uid"
         static let username = "username"
+        static let roomName = "roomName"
     }
     
     struct Color {

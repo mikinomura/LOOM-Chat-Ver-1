@@ -62,6 +62,9 @@ class AcceptRequestViewController: UIViewController {
             roomRef.setValue(roomNameAttr)
             partnerRoomRef.setValue(roomNameAttr)
             
+            let messageViewController = MessageViewController()
+            messageViewController.senderDisplayname = roomName
+            
         }) { (error) in
             print(error.localizedDescription)
         }

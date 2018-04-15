@@ -11,7 +11,7 @@ import Firebase
 
 class MessageViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     // MARK: Properties
-    var senderDisplayname: String = "Luke & Miki"
+    var senderDisplayname: String = "L"
     var senderID = ""
     var messages: [Message] = []
     private var newMessageRefHandle: DatabaseHandle?
@@ -38,8 +38,10 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     
     // MARK: Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         senderID = User.current.uid
         
         // If paring isn't completed, send a message from the server "Waiting for your partner's accept"
@@ -69,7 +71,28 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(handleKeyboardNotification(note:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
     }
+    
+    
+    private func SetRoomName() {
+        let username = User.current.username
+        let ref = Database.database().reference().child("usersInfo").child(username).child("room").child("roomName")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let room = snapshot.value {
+                print("ROOM: \(room)")
+            }
+            
+            print("roomname: \(snapshot.value)")
+            let value = snapshot.value as? String
+            // let roomName = value?["roomName"] as? String ?? ""
+            
+            self.senderDisplayname = value!
+            
+        })
+    }
+    
     private func checkIfPartnerAccept() -> Bool {
         return false
     }
@@ -96,8 +119,10 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             UIView.animate(withDuration: 0, delay:0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }, completion:{ _ in
-                let indexPath = NSIndexPath(item: self.messages.count-1, section: 0)
-                self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+                if self.messages.count > 0 {
+                    let indexPath = NSIndexPath(item: self.messages.count-1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+                }
             })
         }
         
@@ -199,13 +224,14 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     // Send message to Firebase
     func sendMessage(message: String) {
-        let ref = Database.database().reference().child("messages").child("Luke and Miki").childByAutoId()
+        let ref = Database.database().reference().child("messages").child(senderDisplayname).childByAutoId()
         let message = ["message": message, "sender": senderID]
         ref.setValue(message)
     }
     
     private func observeMessages() {
-        let messageRef = Database.database().reference().child("messages").child("Luke and Miki")
+        SetRoomName()
+        let messageRef = Database.database().reference().child("messages").child(senderDisplayname)
         
         // Creating a query that limits the synchronization to the last 25 messages.
         let messageQuery = messageRef.queryLimited(toLast:25)

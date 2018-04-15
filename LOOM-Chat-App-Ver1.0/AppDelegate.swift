@@ -114,6 +114,8 @@ extension AppDelegate {
                 // If the user resistered the partner already, go to the main screen
                 // Else, go to the login screen
                 if status == true {
+                    let messageViewController = MessageViewController()
+                    messageViewController.senderDisplayname = "L"
                     initial = UIStoryboard.initialViewController(for: .main)
                     window?.rootViewController = initial
                     window?.makeKeyAndVisible()
