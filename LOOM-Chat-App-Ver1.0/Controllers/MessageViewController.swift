@@ -231,19 +231,20 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     private func observeMessages() {
         let username = User.current.username
+        
+        // Get the room name from the reference
         let ref = Database.database().reference().child("usersInfo").child(username).child("room").child("roomName")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let room = snapshot.value {
-                print("ROOM: \(room)")
+            guard snapshot.value != nil else {
+                return
             }
             
-            print("roomname: \(snapshot.value)")
+            // set a roomname to senderDisplay name
             let value = snapshot.value as? String
-            // let roomName = value?["roomName"] as? String ?? ""
-            
             self.senderDisplayname = value!
             
+            // Create an observation
             let messageRef = Database.database().reference().child("messages").child(self.senderDisplayname)
             
             // Creating a query that limits the synchronization to the last 25 messages.

@@ -21,8 +21,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        moveFindUserScreen()
+    
     }
     
     // MARK: IB Actions
@@ -52,18 +51,57 @@ extension LoginViewController: FUIAuthDelegate {
         guard let user = user
             else { return }
         
+        // moveFindUserScreen()
+        
         UserService.show(forUID: user.uid) { (user) in
             if let user = user {
                 User.setCurrent(user, writeToUserDefaults: true)
                 
-                UserService.showPartner(forUID: user) { (bool) in
+                // Check if the user has a follower
+                UserService.showFollowerPartner(forUID: user) { (bool) in
+                    
+                    // If user has a follower, check whether the user has accepted the follower already or not
                     if bool == true {
-                        let initialViewController = UIStoryboard.initialViewController(for: .main)
-                        self.view.window?.rootViewController = initialViewController
-                        self.view.window?.makeKeyAndVisible()
-                        
+                        print("The user has a follower!")
+                        UserService.showPartnerStatus(forUID: user, completion: { (status) in
+                            // If accepted, go to the main screen
+                            if status == true {
+                                
+                                // Go to the main screen
+                                let initialViewController = UIStoryboard.initialViewController(for: .main)
+                                self.view.window?.rootViewController = initialViewController
+                                self.view.window?.makeKeyAndVisible()
+                                
+                            } else {
+                                
+                                // Go to the accept screen
+                                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                                let waitingView = storyboard.instantiateViewController(withIdentifier: "acceptRequestViewController") as! AcceptRequestViewController
+                                self.navigationController?.pushViewController(waitingView, animated: true)
+                                
+                            }
+                        })
                     } else {
-                        self.performSegue(withIdentifier: Constants.Segue.signupToFindPartner, sender: self)
+                        // if the user doesn't have a follower, check if the user has a following partner
+                        UserService.showFollowerPartner(forUID: user) { (bool) in
+                            if bool == true {
+                                UserService.showPartnerStatus(forUID: user, completion: { (status) in
+                                    // If a partner has approved the request
+                                    if status == true {
+                                        let initialViewController = UIStoryboard.initialViewController(for: .main)
+                                        self.view.window?.rootViewController = initialViewController
+                                        self.view.window?.makeKeyAndVisible()
+                                    } else {
+                                        // If the request has not been approved, show the waiting screen
+                                        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                                        let waitingView = storyboard.instantiateViewController(withIdentifier: "waitingForYourPartner") as! WaitingForThePartnerViewController
+                                        self.navigationController?.pushViewController(waitingView, animated: true)
+                                    }
+                                })
+                            } else {
+                                self.performSegue(withIdentifier: Constants.Segue.signupToFindPartner, sender: self)
+                            }
+                        }
                     }
                 }
             } else {

@@ -28,10 +28,6 @@ class AcceptRequestViewController: UIViewController {
         // Create a conversation room name
         CreateRoomName()
         
-        // Go to the main screen
-        let initialViewController = UIStoryboard.initialViewController(for: .main)
-        self.view.window?.rootViewController = initialViewController
-        self.view.window?.makeKeyAndVisible()
     }
     
     private func ChangeFollowingStatus(){
@@ -64,6 +60,11 @@ class AcceptRequestViewController: UIViewController {
             
             let messageViewController = MessageViewController()
             messageViewController.senderDisplayname = roomName
+            
+            // Go to the main screen
+            let initialViewController = UIStoryboard.initialViewController(for: .main)
+            self.view.window?.rootViewController = initialViewController
+            self.view.window?.makeKeyAndVisible()
             
         }) { (error) in
             print(error.localizedDescription)

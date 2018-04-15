@@ -37,7 +37,9 @@ class ParingViewController: UIViewController {
                 
                 // Follower's info
                 let partnerInfoRef = ref.child("usersInfo").child(partnerUsername!).child("followerPartner")
+                let partnerFollowingInfoRef = ref.child("usersInfo").child(partnerUsername!).child("followingPartner")
                 let follwerPartnerAtts = ["username": User.current.username, "status": true] as [String : Any]
+                let followingPartnerInfoAttrs = ["username": User.current.username, "status": false] as [String: Any]
                 
                 infoRef.setValue(followingPartnerAttrs)  { (error, ref) in
                     if let error = error {
@@ -55,6 +57,13 @@ class ParingViewController: UIViewController {
                 }
                 
                 partnerInfoRef.setValue(follwerPartnerAtts) { (error, ref) in
+                    if let error = error {
+                        assertionFailure("Error: \(error.localizedDescription)")
+                        return
+                    }
+                }
+                
+                partnerFollowingInfoRef.setValue(followingPartnerInfoAttrs) { (error, ref) in
                     if let error = error {
                         assertionFailure("Error: \(error.localizedDescription)")
                         return
