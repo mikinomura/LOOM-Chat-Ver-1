@@ -26,6 +26,12 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     let inputTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter message..."
+        
+        // Padding left
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+        
+        textField.textColor = Constants.Color.primaryBlue
+        
         return textField
     }()
     
