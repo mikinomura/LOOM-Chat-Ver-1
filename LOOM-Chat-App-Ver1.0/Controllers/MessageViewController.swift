@@ -11,7 +11,7 @@ import Firebase
 
 class MessageViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     // MARK: Properties
-    var senderDisplayname: String = "L"
+    var senderDisplayname: String = ""
     var senderID = ""
     var messages: [Message] = []
     private var newMessageRefHandle: DatabaseHandle?
@@ -230,26 +230,42 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     private func observeMessages() {
-        SetRoomName()
-        let messageRef = Database.database().reference().child("messages").child(senderDisplayname)
-        
-        // Creating a query that limits the synchronization to the last 25 messages.
-        let messageQuery = messageRef.queryLimited(toLast:25)
-        
-        // We can use the observe method to listen for new
-        // messages being written to the Firebase DB
-        newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
+        let username = User.current.username
+        let ref = Database.database().reference().child("usersInfo").child(username).child("room").child("roomName")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let value = snapshot.value as! NSDictionary
-            if let text = value["message"] as? String, text.count > 0 {
-                if value["sender"] as? String == self.senderID {
-                    self.addMessage(isSender: true, message: text)
-                } else {
-                    self.addMessage(isSender: false, message: text)
-                }
+            if let room = snapshot.value {
+                print("ROOM: \(room)")
             }
             
+            print("roomname: \(snapshot.value)")
+            let value = snapshot.value as? String
+            // let roomName = value?["roomName"] as? String ?? ""
+            
+            self.senderDisplayname = value!
+            
+            let messageRef = Database.database().reference().child("messages").child(self.senderDisplayname)
+            
+            // Creating a query that limits the synchronization to the last 25 messages.
+            let messageQuery = messageRef.queryLimited(toLast:25)
+            
+            // We can use the observe method to listen for new
+            // messages being written to the Firebase DB
+            self.newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
+                
+                let value = snapshot.value as! NSDictionary
+                if let text = value["message"] as? String, text.count > 0 {
+                    if value["sender"] as? String == self.senderID {
+                        self.addMessage(isSender: true, message: text)
+                    } else {
+                        self.addMessage(isSender: false, message: text)
+                    }
+                }
+                
+            })
+            
         })
+        
     }
     
     @objc func sendButtonTapped(sender: UIButton!) {
