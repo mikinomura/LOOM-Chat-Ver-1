@@ -51,7 +51,7 @@ struct UserService {
     }
     
     static func showPartnerStatus(forUID user: User, completion: @escaping (Bool?) -> Void) {
-        let ref = Database.database().reference().child("usersInfo").child(user.username).child("followerPartner")
+        let ref = Database.database().reference().child("usersInfo").child(user.username).child("followingPartner")
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard snapshot.exists() else {

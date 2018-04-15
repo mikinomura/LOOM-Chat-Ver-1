@@ -188,6 +188,9 @@
                                 <rect key="frame" x="172" y="389" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="YES"/>
+                                <connections>
+                                    <action selector="yesButtonTapped:" destination="Jgl-qM-UTH" eventType="touchUpInside" id="8It-nE-JWS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Request From xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9a-9o-K4L">
                                 <rect key="frame" x="119" y="184" width="137" height="21"/>
@@ -200,6 +203,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="UDt-7a-Qlq"/>
                     </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="bgO-uH-nXR" id="oKB-wy-qoC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPO-dY-ipC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
