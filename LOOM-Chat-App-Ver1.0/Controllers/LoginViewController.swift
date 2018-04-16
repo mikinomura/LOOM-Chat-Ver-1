@@ -22,6 +22,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // Formatiing
+        loginButton.layer.cornerRadius = 21
+    
     }
     
     // MARK: IB Actions

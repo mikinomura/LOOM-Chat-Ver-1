@@ -18,6 +18,20 @@ class CreateUsernameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBorder()
+        nextButton.layer.cornerRadius = 21
+    }
+    
+    private func setupBorder() {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = Constants.Color.lightBlue.cgColor
+        border.frame = CGRect(x: 0, y: usernameTextField.frame.size.height - width, width:  usernameTextField.frame.size.width, height: usernameTextField.frame.size.height)
+        
+        border.borderWidth = width
+        usernameTextField.layer.addSublayer(border)
+        usernameTextField.layer.masksToBounds = true
     }
     
     //MARK: IB Actions

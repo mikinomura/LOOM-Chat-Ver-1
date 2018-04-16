@@ -14,9 +14,18 @@ class AcceptRequestViewController: UIViewController {
     
     // MARK: -- Property
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var requestFromLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setPartnerName()
+        
+        setButtonFormat()
+    }
+    
+    private func setButtonFormat() {
+        acceptButton.layer.cornerRadius = 21
     }
     
     // MARK: -- IBAction
@@ -29,6 +38,19 @@ class AcceptRequestViewController: UIViewController {
         CreateRoomName()
         
     }
+    
+    private func setPartnerName() {
+        let ref = Database.database().reference().child("usersInfo").child(User.current.username).child("followingPartner")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let value = snapshot.value as? NSDictionary else {
+                return
+            }
+            
+            let partnerName = value["username"] as? String ?? ""
+            self.requestFromLabel.text = "Request from \(partnerName)"
+        })
+    }
+    
     
     private func ChangeFollowingStatus(){
         let ref = Database.database().reference().child("usersInfo").child(User.current.username).child("followingPartner")

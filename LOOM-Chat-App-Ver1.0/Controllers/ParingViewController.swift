@@ -13,9 +13,25 @@ import FirebaseDatabase
 class ParingViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var inviteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        inviteButton.layer.cornerRadius = 21
+        
+        setupBorder()
+    }
+    
+    private func setupBorder() {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = Constants.Color.lightBlue.cgColor
+        border.frame = CGRect(x: 0, y: inputTextField.frame.size.height - width, width:  inputTextField.frame.size.width, height: inputTextField.frame.size.height)
+        
+        border.borderWidth = width
+        inputTextField.layer.addSublayer(border)
+        inputTextField.layer.masksToBounds = true
     }
     
     // MARK: IBAction
